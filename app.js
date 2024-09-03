@@ -1,98 +1,152 @@
+// // // const express = require('express')
+// // // const homeRouter = require('./routes/home.js')
+// // // const aboutUsRouter = require('./routes/aboutUs.js')
+// // // const userRouter = require('./routes/users.js')
+// // // const app = express()
+// // // const port = 3025
+
+
+// // // // app.use('/', homeRouter);
+// // // // app.use('/aboutUs', aboutUsRouter);
+// // // // app.use('/users',userRouter)
+
+// // // //middleware
+// // // const mylogger = function(req,res,next){
+// // //     req.activeTime = (new Date()).toLocaleTimeString()
+// // //     next()
+// // // }
+
+// // // app.use(mylogger)
+
+// // // app.get('/',(req , res)=>{
+// // //     res.send(`Home Page last active ${req.activeTime}`)
+// // // })
+
+// // // app.get('/test',function(req,res){
+// // //     res.send(`Test Page - last active ${req.activeTime}`)
+// // // })
+
+// // // app.get('/about',
+// // //     (req,res,next)=>{
+// // //         console.log('middleware')
+// // //         next()
+// // //     },
+// // //     function(req,res){
+// // //     res.send(`About Page - last active${req.activeTime}`)
+// // // })
+// // // app.listen(port , ()=>{
+// // //     console.log(`the server is listening ${port}`)
+// // // })
+
+
+
+
 // // const express = require('express')
-// // const homeRouter = require('./routes/home.js')
-// // const aboutUsRouter = require('./routes/aboutUs.js')
-// // const userRouter = require('./routes/users.js')
-// // const app = express()
+// // const  app = express()
 // // const port = 3025
 
+// // const homeRouter = require('./routes/index.js')
+// // const usersRouter = require('./routes/users')
 
-// // // app.use('/', homeRouter);
-// // // app.use('/aboutUs', aboutUsRouter);
-// // // app.use('/users',userRouter)
 
-// // //middleware
-// // const mylogger = function(req,res,next){
-// //     req.activeTime = (new Date()).toLocaleTimeString()
-// //     next()
-// // }
 
-// // app.use(mylogger)
 
-// // app.get('/',(req , res)=>{
-// //     res.send(`Home Page last active ${req.activeTime}`)
-// // })
+// // app.set('view engine','pug')
+// // app.set('views','./views')
 
-// // app.get('/test',function(req,res){
-// //     res.send(`Test Page - last active ${req.activeTime}`)
-// // })
+// // app.use(express.static('public'))
+// // app.use(express.static('images'))
+// // app.use(express.static('files'))
 
-// // app.get('/about',
-// //     (req,res,next)=>{
-// //         console.log('middleware')
-// //         next()
-// //     },
-// //     function(req,res){
-// //     res.send(`About Page - last active${req.activeTime}`)
-// // })
+// // app.use('/static', express.static('public'))
+// // app.use('/images',express.static('images'))
+
+
+// // app.use('/',homeRouter)
+// // app.use('/users',usersRouter)
+
+// // /////////////////////////middleware//////////////////
+
+// // // // const myLogger = (req , res , next)=>{
+// // // //   console.log("logged")
+// // // //   next()
+// // // // }
+
+// // // // app.use(myLogger)
+
+// // // app.get('/test',(req,res,next)=>{
+// // // console.log("logged")
+// // // req.activeTime = (new Date).toLocaleTimeString()
+// // // req.activeDate = (new Date).toLocaleDateString()
+// // // res.send(`last visit : ${req.activeTime} ${req.activeDate}`)
+// // // next()
+// // // },(req,res,next)=>{
+// // //     console.log('second ')
+// // //     res.send('second')
+// // // })
+
+// // // app.get('/about',(req,res,next)=>{
+// // //     console.log('third')
+// // //     res.send('third')
+// // // })
+
+
 // // app.listen(port , ()=>{
-// //     console.log(`the server is listening ${port}`)
+// //     console.log(`the server is listening in port ${port}`)
 // // })
 
 
 
 
-// const express = require('express')
-// const  app = express()
-// const port = 3025
-
-// const homeRouter = require('./routes/index.js')
-// const usersRouter = require('./routes/users')
 
 
+// ///////////////////////////////////
 
+// const express = require ('express')
+// const aboutRouter = require('./routes/pages.js')
+// const galleryRouter = require ("./routes/pages.js")
+// const contactusRouter = require ('./routes/pages.js')
+// const homeRouter = require('./routes/pages.js')
 
+// const app = express()
+// const port = 3231
+
+// app.use('/',homeRouter)
+// // app.get("/",(req,res)=>{
+// //     // res.send("This is a home page")
+// //     res.render("about")
+
+// // })
+// //views
 // app.set('view engine','pug')
 // app.set('views','./views')
 
-// app.use(express.static('public'))
-// app.use(express.static('images'))
-// app.use(express.static('files'))
-
-// app.use('/static', express.static('public'))
-// app.use('/images',express.static('images'))
 
 
-// app.use('/',homeRouter)
-// app.use('/users',usersRouter)
 
-// /////////////////////////middleware//////////////////
+// app.use('/',aboutRouter)
+// app.use("/gallery",galleryRouter)
+// app.use('/',contactusRouter)
 
-// // // const myLogger = (req , res , next)=>{
-// // //   console.log("logged")
-// // //   next()
-// // // }
+// app.get("*",(req,res)=>{
+//     res.send("page 404 not FOUND")
+// })
+// /////////
 
-// // // app.use(myLogger)
+// // app.use(express.static("public"))
+// // app.use(express.static("images"))
+// // app.use(express.static("files"))
 
-// // app.get('/test',(req,res,next)=>{
-// // console.log("logged")
-// // req.activeTime = (new Date).toLocaleTimeString()
-// // req.activeDate = (new Date).toLocaleDateString()
-// // res.send(`last visit : ${req.activeTime} ${req.activeDate}`)
-// // next()
-// // },(req,res,next)=>{
-// //     console.log('second ')
-// //     res.send('second')
-// // })
+// //or
 
-// // app.get('/about',(req,res,next)=>{
-// //     console.log('third')
-// //     res.send('third')
-// // })
+// const path = require('path')
 
+// app.use('/static',express.static(path.join(__dirname,'public')))
+// app.use('/images',express.static(path.join(__dirname,'images')))
 
+// //////////////
 // app.listen(port , ()=>{
-//     console.log(`the server is listening in port ${port}`)
+//     console.log(`the server is running ${port}`)
 // })
 
 
@@ -100,51 +154,81 @@
 
 
 
-///////////////////////////////////
 
-const express = require ('express')
-const aboutRouter = require('./routes/pages.js')
-const galleryRouter = require ("./routes/pages.js")
-const contactusRouter = require ('./routes/pages.js')
-const homeRouter = require('./routes/pages.js')
 
+
+
+
+///////////////////
+
+
+
+
+
+const express = require('express')
 const app = express()
-const port = 3231
+const port = 3233
+// const res = require('express/lib/response')
+const bodyParser = require('body-parser')
 
-app.use('/',homeRouter)
-// app.get("/",(req,res)=>{
-//     // res.send("This is a home page")
-//     res.render("about")
+const mongoose = require('mongoose')
 
-// })
-//views
-app.set('view engine','pug')
+mongoose.connect("mongodb://localhost/my_db")
+
+const User = require("./models/users.js")
+
+const usersRouter = require('./routes/users.js')
+
+
+///// home , products , gallery , contactus , aboutus
+
+app.set('view engine' , 'pug')
 app.set('views','./views')
 
+app.use(bodyParser.urlencoded({extended:true}))
 
+// app.use(express.static('public'))
 
-
-app.use('/',aboutRouter)
-app.use("/gallery",galleryRouter)
-app.use('/',contactusRouter)
-
-app.get("*",(req,res)=>{
-    res.send("page 404 not FOUND")
-})
-/////////
-
-// app.use(express.static("public"))
-// app.use(express.static("images"))
-// app.use(express.static("files"))
-
-//or
+// app.use('/static',express.static('public'))
 
 const path = require('path')
 
 app.use('/static',express.static(path.join(__dirname,'public')))
-app.use('/images',express.static(path.join(__dirname,'images')))
 
-//////////////
-app.listen(port , ()=>{
-    console.log(`the server is running ${port}`)
+app.get("/",(req,res)=>{
+    // res.send('the home page')
+    res.render("home")
+
 })
+
+app.use('/registerForm',usersRouter)
+
+app.get('/products', (req,res)=>{
+    res.render('products')
+    
+})
+
+app.get('/gallery',(req , res)=>{
+    // res.send('gallery')
+    res.render('gallery')
+})
+
+app.get('/contactus',(req , res)=>{
+    // res.send('contactus')
+    res.render('contactus')
+})
+
+app.get('/aboutus',(req , res)=>{
+    // res.send('aboutus')
+    res.render('aboutus')
+})
+
+app.get('*', (req , res )=>{ 
+    res.render('NotFound')
+})
+
+app.listen(port , ()=>{
+    console.log(`the server is running on port ${port}`)
+})
+
+
